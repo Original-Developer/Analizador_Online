@@ -1,0 +1,162 @@
+/* Global CSS */
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+*:not(input, a, button) {
+    cursor: default;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --main: #3879D9;
+    --main-dark: #1b57b1;
+    --font: rgb(56, 56, 56);
+    --bg: #fff;
+    --warn: rgb(189, 54, 54);
+}
+
+/* Tag Selectors */
+html {
+    scroll-behavior: smooth;
+    /* Disable text selection for HTML elements */
+    -webkit-touch-callout: none;
+    /* iOS - Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions - Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version */
+}
+
+body {
+    background-color: var(--bg);
+}
+
+form * {
+    margin: 8px 8px;
+    font-size: 18px;
+}
+
+form input[type=text] {
+    width: calc(100% - 8px * 2);
+    display: inline-block;
+    padding: 12px 12px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    transition: all 0.2s;
+    color: var(--font);
+}
+
+form input[type=text]:focus {
+    background-color: #f0f0f0;
+    border: 1px solid var(--main);
+    outline: none;
+}
+
+form>div {
+    margin: 0;
+}
+
+label>.fa {
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+label {
+    color: var(--font);
+}
+
+a,
+a:visited,
+a:active {
+    color: var(--main);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--main-dark);
+}
+
+footer {
+    text-align: center;
+    margin: 0 7px;
+    width: calc(100% - 8px * 2);
+}
+
+/* Class Selectors */
+.animate-wrapper {
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+
+.warning-ntf {
+    background-color: var(--warn);
+    color: var(--bg);
+    padding: 12px;
+    animation: fade-in 0.5s;
+    transition: all 0.3;
+}
+
+.warning-btn {
+    font-weight: bold;
+    float: right;
+    cursor: pointer;
+    color: var(--bg);
+    transition: color 0.3s;
+}
+
+.warning-btn:hover {
+    color: var(--font);
+}
+
+/* ID Selectors */
+#intro {
+    width: 650px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#submit {
+    border: 0px;
+    background-color: var(--main);
+    color: var(--bg);
+    border-radius: 4px;
+    width: calc(100% - 8px * 2);
+    padding: 12px 12px;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#submit:hover {
+    background-color: var(--main-dark);
+}
+
+#spinner {
+    margin: 50vh auto;
+    width: 100px;
+    height: 100px;
+    display: none;
+    opacity: 0;
+    border: 6px solid var(--main);
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    box-sizing: border-box;
+}

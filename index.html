@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!-- START -->
+<html lang="en-GB" dir="ltr">
+	<head>
+		<title>Analizador Sintáctico de Oraciones</title>
+		<meta charset="utf8" />
+		<meta name="author" content="Nyx (Discipulus iosephi)" />
+		<meta name="keywords" content="analizar, oraciones, bachiller" />
+		<link rel="stylesheet" hreflang="en" type="text/css" href="./style/style.css" />
+		<link rel="stylesheet" hreflang="en" type="text/css" href="./style/animations.css" />
+		<link rel="stylesheet" hreflang="en" type="text/css" href="./style/menu.css" />
+		<link rel="stylesheet" hreflang="en" type="text/css" href="./style/tooltip.css" />
+		<link rel="stylesheet" hreflang="en" type="text/css" href="./style/checkbox.css" />
+		<link rel="stylesheet" hreflang="en" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+	</head>
+	<body>
+		<div id="intro">
+			<form action="">
+				<div class="animate-wrapper">
+					<label for="n_analisis">Nombre del análisis</label>
+					<input type="text" name="nombreAnalisis" id="n_analisis" placeholder="Mi primer análisis en línea." />
+				</div>
+				<div class="animate-wrapper">
+					<label for="f_oracion">Oración para analizar<i class="btn btn-primary tooltip fa fa-exclamation-triangle">
+						<div class="top">
+							<p>¡Esto no podrá ser editado más tarde!</p>
+							<i></i>
+						</div>
+					</i></label>
+					<input type="text" name="formularioOracion" id="f_oracion" />
+				</div>
+				<div class="animate-wrapper">
+					<div class="md-checkbox">
+						<input id="check" type="checkbox" />
+						<label for="check">Estoy de acuerdo con los términos de uso de la aplicación.</label>
+					</div>
+				</div>
+				<div class="animate-wrapper">
+					<button type="button" id="submit" onclick="submitForm()">Comenzar Análisis</button>
+				</div>
+			</form>
+			<div class="animate-wrapper">
+				<footer>
+					<a href="#" target="_blank">Política de Privacidad</a> | 
+					<a href="#" target="_blank">Términos de uso</a> |
+					<i class="fa fa-copyright"></i> Nyx. Todos los derechos reservados 2023
+				</footer>
+			</div>
+		</div>
+		<div id="menu">
+			<a href="#">
+				<i class="fa fa-plus-circle"></i> Añadir grupo sintáctico
+			</a>
+			<a href="#">
+				<i class="fa fa-minus-circle"></i> Eliminar grupo sintáctico
+			</a>
+			<hr />
+			<a href="#">
+				<i class="fa fa-rotate-left"></i> Deshacer acción <span>Ctrl + Z</span>
+			</a>
+			<a href="#">
+				<i class="fa fa-rotate-right"></i> Rehacer acción <span>Ctrl + Y</span>
+			</a>
+			<hr />
+			<a href="#">
+				<i class="fa fa-scissors"></i> Cortar <span>Ctrl + X</span>
+			</a>
+			<a href="#">
+				<i class="fa fa-files-o"></i> Copiar <span>Ctrl + C</span>
+			</a>
+			<a href="#">
+				<i class="fa fa-clipboard"></i> Pegar <span>Ctrl + V</span>
+			</a>
+			<hr />
+			<a href="#">
+				<i class="fa fa-floppy-o"></i> Guardar análisis
+			</a>
+			<a href="#">
+				<i class="fa fa-floppy-o"></i> Guardar análisis como...
+			</a>
+			<hr />
+			<a href="#">
+				<i class="fa fa-adjust"></i> Cambiar tema del analizador
+			</a>
+			<hr />
+			<a href="#">
+				<i class="fa fa-info-circle"></i> Acerca del Analizador de Oraciones
+			</a>
+		</div>
+		<script type="text/javascript" src="./scripts/main.js"></script>
+		<script type="text/javascript" src="./scripts/submit.js"></script>
+		<script type="text/javascript" src="./scripts/randPlaceholder.js"></script>
+		<script type="text/javascript" src="./scripts/workspace.js"></script>
+	</body>
+</html>
+<!--  END  -->

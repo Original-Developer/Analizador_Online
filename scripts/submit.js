@@ -1,3 +1,4 @@
+let warningExists = false;
 function submitForm () {
     const info = {
         nombre: document.getElementById("n_analisis").value, 
@@ -7,6 +8,7 @@ function submitForm () {
     info.nombre = info.nombre ? info.nombre : "Mi primer análisis online.";
     if (info.terminos) {
         if (info.oracion == "" || info.oracion == ".") {
+            if (warningExists) return;
             createWarningNotification(`La oración no es una oración válida.`);
         } else {
             let temp = document.createElement("div");
@@ -34,6 +36,7 @@ function submitForm () {
             }, 599);
         }
     } else {
+        if (warningExists) return;
         createWarningNotification("Los términos deben ser aceptados para usar la aplicación.");
     }
 }
@@ -45,12 +48,14 @@ function createWarningNotification (text) {
         close.setAttribute("onclick", "removeWarningNotification(this)")
     warn_ntf.appendChild(close);
     warn_ntf.innerHTML += text;
-    document.body.appendChild(warn_ntf);
+    document.getElementById("warns").appendChild(warn_ntf);
+    warningExists = true;
 }
 const removeWarningNotification = (obj) => {
     obj.parentElement.style.animation = "fade-out 0.5s";
     window.setTimeout(function () {
         obj.parentElement.style.display = "none";
+        warningExists = false;
         document.body.removeChild(obj.parentElement);
     }, 499);
 };

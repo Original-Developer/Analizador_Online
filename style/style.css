@@ -20,7 +20,7 @@
     --main-dark: #1b57b1;
     --font: rgb(56, 56, 56);
     --bg: #fff;
-    --warn: rgb(189, 54, 54);
+    --warn: rgb(212, 41, 41);
 }
 
 /* Tag Selectors */
@@ -107,6 +107,9 @@ footer {
     background-color: var(--warn);
     color: var(--bg);
     padding: 12px;
+    width: calc(100% - 8px * 2);
+    margin-bottom: 30px;
+    border-radius: 4px;
     animation: fade-in 0.5s;
     transition: all 0.3;
 }
@@ -117,6 +120,10 @@ footer {
     cursor: pointer;
     color: var(--bg);
     transition: color 0.3s;
+}
+
+.warning-btn.fa {
+    margin-top: 2px;
 }
 
 .warning-btn:hover {

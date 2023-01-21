@@ -157,7 +157,19 @@ footer {
 
 .animatedLink:hover::before {
     transform: scaleX(1);
-  }
+}
+
+.sentence_item {
+    padding: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.sentence_item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+.sentence_item::after {
+}
 
 /* ID Selectors */
 #intro {
@@ -203,4 +215,14 @@ footer {
     margin: var(--workspaceMargin);
     background-color: var(--bg);
     border-radius: 4px;
+}
+
+#sentence_container {
+    padding-top: 20px;
+}
+
+#sentence {
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
 }

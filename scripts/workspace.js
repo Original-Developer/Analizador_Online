@@ -49,9 +49,10 @@ function createSentenceItems (str) {
         i = 0;
     for (const item of tempSplit) {
         let tempSpan = document.createElement("span");
-            tempSpan.innerText = item; // == tempSplit[-1] ? item : item + " ";
+            tempSpan.innerText = item;
             tempSpan.classList = "sentence_item";
             tempSpan.id = `sentence_item-${i}`;
+            tempSpan.setAttribute("onclick", "addToGroup(this)");
             i++;
         tempArr.push(tempSpan);
     }
@@ -62,6 +63,32 @@ function addScript (scriptName) {
     script.type = "text/javascript";
     script.src  = `./scripts/${scriptName}.js`;
     document.body.appendChild(script);
+}
+function addToGroup (item) {
+    if (item.classList.contains("selected_item")) {
+        item.classList.remove("selected_item");
+    } else {
+        item.classList.add("selected_item");
+    }
+    updateSelectedItems();
+}
+function updateSelectedItems () {
+    let tempAllItems = document.getElementsByClassName("selected_item");
+    for (const item of tempAllItems) {
+        if (item == tempAllItems[0] && tempAllItems[1]) {
+            item.style.borderTopLeftRadius = "4px";
+            item.style.borderBottomLeftRadius = "4px";
+        } else if (tempAllItems.length == 1) {
+            item.style.borderRadius = "4px";
+        } else if (item == tempAllItems[tempAllItems.length - 1]) {
+            item.style.borderTopRightRadius = "4px";
+            item.style.borderBottomRightRadius = "4px";
+        } 
+    }
+}
+function resetSentenceItems () {
+    let allItems = document.getElementsByClassName("sentence_item");
+    for (const item of allItems) item.classList.filter(temp => temp !== "selected_item");
 }
 function createWorkSpace (info) {
     addScript('rclick');

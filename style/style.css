@@ -168,7 +168,14 @@ footer {
     background-color: rgba(0, 0, 0, 0.1);
     border-radius: 4px;
 }
-.sentence_item::after {
+
+.selected_item {
+    background-color: var(--main) !important;
+    color: white;
+}
+
+.selected_item:hover {
+    border-radius: 0px !important;
 }
 
 /* ID Selectors */
@@ -223,6 +230,6 @@ footer {
 
 #sentence {
     width: 100%;
-    font-size: 20px;
+    font-size: 25px;
     text-align: center;
 }

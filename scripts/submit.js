@@ -45,7 +45,7 @@ function createWarningNotification (text) {
         warn_ntf.classList = "warning-ntf";
     let close = document.createElement("span");
         close.classList = "warning-btn fa fa-times";
-        close.setAttribute("onclick", "removeWarningNotification(this)")
+        close.setAttribute("onclick", "removeWarningNotification(this)");
     warn_ntf.appendChild(close);
     warn_ntf.innerHTML += text;
     document.getElementById("warns").appendChild(warn_ntf);

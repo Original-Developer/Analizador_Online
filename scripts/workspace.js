@@ -131,7 +131,7 @@ function updateSelectedItems () {
     let tempAllItems = document.getElementsByClassName("selected_item");
     for (let i = 0; i < tempAllItems.length; i++) {
         const currentIndex = Array.from(parent.children).indexOf(tempAllItems[i]);
-        const hasPrevious = Array.from(parent.children).indexOf(tempAllItems[i - 1]) === currentIndex - 1;
+        const hasPrevious = currentIndex !== 0 && Array.from(parent.children).indexOf(tempAllItems[i - 1]) === currentIndex - 1;
         const hasNext = Array.from(parent.children).indexOf(tempAllItems[i + 1]) === currentIndex + 1;
         if (!hasPrevious) tempAllItems[i].classList.add("start");
         else tempAllItems[i].classList.remove("start");

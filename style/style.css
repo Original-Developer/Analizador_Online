@@ -162,21 +162,37 @@ footer {
 .sentence_item {
     padding: 8px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.2s;
 }
 .sentence_item:hover {
     background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
+    border-radius: 9999px;
 }
 
 .selected_item {
     background-color: var(--main) !important;
     color: white;
+    transition: all 0.2s;
 }
 
 .selected_item:hover {
-    border-radius: 0px !important;
+    border-radius: 0px;
 }
+
+.start, .start:hover {
+	border-bottom-left-radius: 9999px !important;
+	border-top-left-radius: 9999px !important;
+    border-top-right-radius: 0px ;
+    border-bottom-right-radius: 0px ;
+}
+
+.end, .end:hover {
+    border-bottom-left-radius: 0px ;
+	border-top-left-radius: 0px ;
+	border-bottom-right-radius: 9999px !important;
+	border-top-right-radius: 9999px !important;
+}
+
 
 /* ID Selectors */
 #intro {

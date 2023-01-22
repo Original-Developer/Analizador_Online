@@ -2,7 +2,7 @@ function createMenu () {
     let menu = document.createElement("div");
         menu.id = "menu";
         menu.innerHTML = '\
-            <a href="#"> \
+            <a onclick="createGroup()"> \
                 <i class="fa fa-plus-circle"></i> Añadir grupo sintáctico \
             </a> \
             <a href="#"> \
@@ -43,6 +43,27 @@ function createMenu () {
         ';
     document.body.appendChild(menu);
 }
+
+// MENU FUNCTIONS - START
+
+function createGroup () {
+
+    // let allSelectedItems = document.getElementsByClassName("selected_item"),
+    //     positionsX = elementWidth = [];
+    // for (const item of allSelectedItems) {
+    //     positionsX.push(parseInt(item.getBoundingClientRect().x));
+    //     elementWidth.push(item.getBoundingClientRect().width);
+    // }
+    // let target = document.getElementById("groups");
+    // for (let i = 0; i < positionsX.length; i++) {
+    //     let tempLineDiv = document.createElement("div");
+    //         tempLineDiv.classList = "line-div";
+    //     target.appendChild(tempLineDiv);
+    // }
+}
+
+// MENU FUNCTIONS - END
+
 function createSentenceItems (str) {
     let tempSplit = str.split(" "),
         tempArr = new Array(),
@@ -56,6 +77,7 @@ function createSentenceItems (str) {
             i++;
         tempArr.push(tempSpan);
     }
+    tempArr.pop();
     return tempArr;
 }
 function addScript (scriptName) {
@@ -67,23 +89,22 @@ function addScript (scriptName) {
 function addToGroup (item) {
     if (item.classList.contains("selected_item")) {
         item.classList.remove("selected_item");
-    } else {
+        item.style.borderRadius = "9999px";
+    }
+    else {
+        item.style.borderRadius = "0px";
         item.classList.add("selected_item");
+        
     }
     updateSelectedItems();
 }
 function updateSelectedItems () {
     let tempAllItems = document.getElementsByClassName("selected_item");
-    for (const item of tempAllItems) {
-        if (item == tempAllItems[0] && tempAllItems[1]) {
-            item.style.borderTopLeftRadius = "4px";
-            item.style.borderBottomLeftRadius = "4px";
-        } else if (tempAllItems.length == 1) {
-            item.style.borderRadius = "4px";
-        } else if (item == tempAllItems[tempAllItems.length - 1]) {
-            item.style.borderTopRightRadius = "4px";
-            item.style.borderBottomRightRadius = "4px";
-        } 
+    for (let i = 0; i < tempAllItems.length; i++) {
+        if (!tempAllItems[i - 1]) tempAllItems[i].classList.add("start");
+        else tempAllItems[i].classList.remove("start");
+        if (!tempAllItems[i + 1]) tempAllItems[i].classList.add("end");
+        else tempAllItems[i].classList.remove("end");
     }
 }
 function resetSentenceItems () {
@@ -99,9 +120,12 @@ function createWorkSpace (info) {
     document.body.appendChild(workspace);
     let tempSpans = createSentenceItems(info.oracion);
     workspace = document.getElementById("workspace");
+    let create = document.createElement("div");
+        create.id = "createGroup";
     let container = document.createElement("div");
         container.id = "sentence_container";
     workspace.appendChild(container);
+    workspace.appendChild(create);
     container = document.getElementById("sentence_container");
     let sentence = document.createElement("div"),
         groups = document.createElement("div");

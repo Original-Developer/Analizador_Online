@@ -127,14 +127,16 @@ function addToGroup (item) {
 }
 
 function updateSelectedItems () {
+    const parent = document.getElementById("sentence");
     let tempAllItems = document.getElementsByClassName("selected_item");
     for (let i = 0; i < tempAllItems.length; i++) {
-        if (!tempAllItems[i - 1]) tempAllItems[i].classList.add("start");
+        const currentIndex = Array.from(parent.children).indexOf(tempAllItems[i]);
+        const hasPrevious = Array.from(parent.children).indexOf(tempAllItems[i - 1]) === currentIndex - 1;
+        const hasNext = Array.from(parent.children).indexOf(tempAllItems[i + 1]) === currentIndex + 1;
+        if (!hasPrevious) tempAllItems[i].classList.add("start");
         else tempAllItems[i].classList.remove("start");
-        if (!tempAllItems[i + 1]) tempAllItems[i].classList.add("end");
+        if (!hasNext) tempAllItems[i].classList.add("end");
         else tempAllItems[i].classList.remove("end");
-        if (!tempAllItems[i - 1] && !tempAllItems[i + 1]) tempAllItems[i].classList.add("single");
-        else tempAllItems[i].classList.remove("single");
     }
 }
 

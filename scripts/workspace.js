@@ -47,7 +47,21 @@ function createMenu () {
 // MENU FUNCTIONS - START
 
 function createGroup () {
-
+    let modalCreateGroup = document.createElement("div");
+        modalCreateGroup.classList.add("modal_window");
+        modalCreateGroup.addEventListener("click", function (e) {
+            if (e.target == document.getElementsByClassName("modal_content")[0]) return;
+            else removeModalWindow(this);
+        });
+    let modalCreateGroupContent = document.createElement("div")
+        modalCreateGroupContent.classList.add("modal_content");
+        modalCreateGroupContent.id = "createGroup";
+    modalCreateGroup.appendChild(modalCreateGroupContent);
+    document.body.appendChild(modalCreateGroup);
+    let temp = document.getElementsByClassName("modal_window")[0];
+    temp.style.animation = "fade-in 0.5s";
+    window.setTimeout(() => temp.style.opacity = "1", 480);
+    
     // let allSelectedItems = document.getElementsByClassName("selected_item"),
     //     positionsX = elementWidth = [];
     // for (const item of allSelectedItems) {
@@ -60,6 +74,14 @@ function createGroup () {
     //         tempLineDiv.classList = "line-div";
     //     target.appendChild(tempLineDiv);
     // }
+}
+
+function removeModalWindow (modal) {
+    modal.style.animation = "fade-out 0.5s";
+    window.setTimeout(function () {
+        modal.style.display = "none";
+        document.body.removeChild(modal);
+    }, 499);
 }
 
 // MENU FUNCTIONS - END
@@ -77,18 +99,23 @@ function createSentenceItems (str) {
             i++;
         tempArr.push(tempSpan);
     }
-    tempArr.pop();
+    if (tempArr[tempArr.length - 1] == "") tempArr.pop();
     return tempArr;
 }
+
 function addScript (scriptName) {
     let script = document.createElement('script');
     script.type = "text/javascript";
     script.src  = `./scripts/${scriptName}.js`;
     document.body.appendChild(script);
 }
+
 function addToGroup (item) {
     if (item.classList.contains("selected_item")) {
         item.classList.remove("selected_item");
+        item.classList.remove("start");
+        item.classList.remove("end");
+        item.classList.remove("single");
         item.style.borderRadius = "9999px";
     }
     else {
@@ -98,6 +125,7 @@ function addToGroup (item) {
     }
     updateSelectedItems();
 }
+
 function updateSelectedItems () {
     let tempAllItems = document.getElementsByClassName("selected_item");
     for (let i = 0; i < tempAllItems.length; i++) {
@@ -105,12 +133,16 @@ function updateSelectedItems () {
         else tempAllItems[i].classList.remove("start");
         if (!tempAllItems[i + 1]) tempAllItems[i].classList.add("end");
         else tempAllItems[i].classList.remove("end");
+        if (!tempAllItems[i - 1] && !tempAllItems[i + 1]) tempAllItems[i].classList.add("single");
+        else tempAllItems[i].classList.remove("single");
     }
 }
+
 function resetSentenceItems () {
     let allItems = document.getElementsByClassName("sentence_item");
     for (const item of allItems) item.classList.filter(temp => temp !== "selected_item");
 }
+
 function createWorkSpace (info) {
     addScript('rclick');
     createMenu();
@@ -120,12 +152,9 @@ function createWorkSpace (info) {
     document.body.appendChild(workspace);
     let tempSpans = createSentenceItems(info.oracion);
     workspace = document.getElementById("workspace");
-    let create = document.createElement("div");
-        create.id = "createGroup";
     let container = document.createElement("div");
         container.id = "sentence_container";
     workspace.appendChild(container);
-    workspace.appendChild(create);
     container = document.getElementById("sentence_container");
     let sentence = document.createElement("div"),
         groups = document.createElement("div");
